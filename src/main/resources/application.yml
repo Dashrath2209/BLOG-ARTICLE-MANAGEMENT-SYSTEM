@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: blog-management-system
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/blog_system?useSSL=false&allowPublicKeyRetrieval=true
+    username: blog_user
+    password: blog_pass
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+server:
+  port: 8080
+
+app:
+  jwt:
+    secret: MyBlogSystemSecretKeyForJWTMustBeAtLeast32CharactersLong12345
+    expirationMs: 86400000
+
+file:
+  upload-dir: uploads
+
+logging:
+  level:
+    root: WARN
+    com.jayaa.blog: INFO
+    org.springframework.web: WARN
+    org.springframework.security: WARN
+    org.hibernate: WARN
